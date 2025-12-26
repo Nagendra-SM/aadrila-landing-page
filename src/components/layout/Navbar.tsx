@@ -7,7 +7,7 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', href: '#home' },
+  { label: 'Home', href: '/' },
   { label: 'Industries', href: '#industries' },
   { label: 'Products', href: '#products' },
   { label: 'Blog', href: '#blog' },
@@ -15,7 +15,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'About Us', href: '#about' }
 ]
 
-const ACTIVE_ITEM = 'About Us'
+const ACTIVE_ITEM = 'Home'
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

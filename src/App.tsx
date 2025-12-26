@@ -1,10 +1,13 @@
-import { ThemeProvider } from './components/common/ThemeProvider'
-import Navbar from './components/layout/Navbar'
-import SplashScreen from './components/common/SplashScreen';
-import { useState, useCallback } from 'react';
+import { ThemeProvider } from "./components/common/ThemeProvider";
+import SplashScreen from "./components/common/SplashScreen";
+import { useState, useCallback } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import MainLayout from "./components/layout/MainLayout";
 
 function App() {
-
   const [showSplash, setShowSplash] = useState(true);
   const [contentVisible, setContentVisible] = useState(false);
 
@@ -15,20 +18,28 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider>
-      <div className="min-h-screen">
-        {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
-        <main
-        className={`min-h-screen transition-opacity duration-700 ${
-          contentVisible ? 'opacity-100' : 'opacity-0'
-        }`}
-       >
-        <Navbar />
-      </main>
-        
-      </div>
-    </ThemeProvider>
-  )
+    <HelmetProvider>
+      <BrowserRouter>
+        <ThemeProvider>
+          <div className="min-h-screen">
+            {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+            <div
+              className={`min-h-screen transition-opacity duration-700 ${
+                contentVisible ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <Routes>
+                <Route element={<MainLayout />}>
+                  <Route index element={<Home />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
+              </Routes>
+            </div>
+          </div>
+        </ThemeProvider>
+      </BrowserRouter>
+    </HelmetProvider>
+  );
 }
 
-export default App
+export default App;
