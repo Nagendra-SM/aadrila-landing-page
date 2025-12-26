@@ -80,21 +80,6 @@ const DocumentScanner = () => {
           ease: "easeInOut"
         }}
       />
-      
-      {/* Status indicator */}
-      <motion.div
-        className="absolute top-0 right-0 md:top-4 md:right-4 flex items-center gap-2 bg-card/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-border/50"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
-      >
-        <motion.div
-          className="w-2.5 h-2.5 rounded-full bg-green-500"
-          animate={{ scale: [1, 1.4, 1], opacity: [1, 0.7, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        />
-        <span className="text-sm font-medium text-foreground">AI Scanning</span>
-      </motion.div>
 
       {/* Document container */}
       <div className="relative w-[600px] h-[350px] flex items-center justify-center">
@@ -140,30 +125,6 @@ const DocumentScanner = () => {
           })}
         </AnimatePresence>
       </div>
-
-      {/* Processing indicator */}
-      <motion.div
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-muted-foreground"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <motion.div className="flex gap-1">
-          {[0, 1, 2].map((i) => (
-            <motion.div
-              key={i}
-              className="w-1.5 h-1.5 rounded-full bg-accent"
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ 
-                duration: 1, 
-                repeat: Infinity, 
-                delay: i * 0.2 
-              }}
-            />
-          ))}
-        </motion.div>
-        <span>Processing documents...</span>
-      </motion.div>
     </div>
   );
 };

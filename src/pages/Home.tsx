@@ -1,5 +1,6 @@
-import HeroSection from "../components/sections/HeroSection/HeroSection";
 import { Helmet } from "react-helmet-async";
+import HeroSection from "../components/sections/HeroSection/HeroSection";
+import IndustrySection from "../components/sections/IndustrySection/IndustrySection";
 
 const Home = () => {
   return (
@@ -11,8 +12,9 @@ const Home = () => {
           content="Enhance security, accuracy, and efficiency with cutting-edge AI solutions for seamless document processing and fraud prevention." 
         />
       </Helmet>
-      <main className="w-full h-full md:h-[100vh]">
+      <main className="w-full h-full">
         <HeroSection />
+        <IndustrySection />
       </main>
     </>
   );

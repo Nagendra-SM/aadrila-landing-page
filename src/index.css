@@ -140,6 +140,14 @@ body {
   --orange-light: 24 100% 60%;
   --blue-accent: 210 100% 50%;
 
+  /* Hero + scanner tokens */
+  --hero-gradient-start: 215 82% 92%;
+  --hero-gradient-mid: 219 74% 78%;
+  --hero-gradient-end: 224 67% 64%;
+  --wave-color: 198 92% 68%;
+  --scan-line: 182 95% 55%;
+  --document-shadow: 215 30% 20%;
+
   /* Shadows for splash screen */
   --shadow-glow: 0 0 20px hsl(var(--accent) / 0.3);
   --shadow-splash: 0 8px 32px hsl(var(--navy) / 0.2);

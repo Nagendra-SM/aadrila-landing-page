@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import LicenseImg from "@/assets/License.png";
-import InvoiceImg from "@/assets/Invoice.png";
-import DocImg from "@/assets/Doc.png";
+import LicenseImg from "../../../assets/License.png";
+import InvoiceImg from "../../../assets/Invoice.png";
+import DocImg from "../../../assets/Doc.png";
 
 type DocumentType = "license" | "invoice" | "doc";
 
@@ -30,7 +30,7 @@ const DocumentCard = ({ type, isScanning, delay = 0 }: DocumentCardProps) => {
       }}
     >
       <motion.div
-        className="w-56 h-72 rounded-2xl shadow-2xl relative overflow-hidden bg-white"
+        className="w-72 h-96 rounded-2xl shadow-2xl relative overflow-hidden"
         style={{
           boxShadow: isScanning 
             ? "0 25px 50px -12px hsl(var(--scan-line) / 0.3), 0 12px 24px -8px hsl(var(--document-shadow) / 0.15)"
@@ -47,7 +47,7 @@ const DocumentCard = ({ type, isScanning, delay = 0 }: DocumentCardProps) => {
         <img 
           src={documentImages[type]} 
           alt={`${type} document`}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain mix-blend-multiply"
         />
         
         {/* Scanning line overlay */}
