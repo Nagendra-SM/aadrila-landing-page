@@ -5,7 +5,7 @@ import { ThemedButton } from '../../common/ThemedButton'
 const HeroSection = () => {
   return (
     <section 
-      className="relative min-h-screen overflow-hidden flex justify-center items-center"
+      className="relative min-h-screen overflow-hidden"
       style={{
         backgroundImage: "url('/hero-bg.jpg')",
         backgroundSize: "cover",
@@ -22,7 +22,7 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[80vh]">
           {/* Left Content */}
           <motion.div
-            className="space-y-7"
+            className="space-y-7 pl-8 md:pl-16"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
