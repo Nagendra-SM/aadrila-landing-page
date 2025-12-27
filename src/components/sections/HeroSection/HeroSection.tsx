@@ -5,7 +5,7 @@ import { ThemedButton } from '../../common/ThemedButton'
 const HeroSection = () => {
   return (
     <section 
-      className="relative min-h-screen overflow-hidden"
+      className="relative min-h-screen overflow-hidden flex justify-center items-center"
       style={{
         backgroundImage: "url('/hero-bg.jpg')",
         backgroundSize: "cover",
