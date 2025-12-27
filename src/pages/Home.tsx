@@ -16,11 +16,21 @@ const Home = () => {
         />
       </Helmet>
       <main className="w-full h-full">
-        <HeroSection />
-        <IndustrySection />
-        <ProductsSection />
-        <BlogsSection />
-        <ContactSection />
+        <div id="hero">
+          <HeroSection />
+        </div>
+        <div id="industries">
+          <IndustrySection />
+        </div>
+        <div id="products">
+          <ProductsSection />
+        </div>
+        <div id="blog">
+          <BlogsSection />
+        </div>
+        <div id="contact">
+          <ContactSection />
+        </div>
       </main>
     </>
   );

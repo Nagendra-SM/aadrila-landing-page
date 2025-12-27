@@ -4,7 +4,20 @@ import { ThemedButton } from '../../common/ThemedButton'
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen overflow-hidden" style={{ backgroundImage: "url('/images/hero-bg.jpg')",objectFit: "cover" }}>
+    <section 
+      className="relative min-h-screen overflow-hidden"
+      style={{
+        backgroundImage: "url('/hero-bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundBlendMode: "overlay"
+      }}
+    >
+      {/* Background overlay for better text readability */}
+      <div className="absolute inset-0" />
+      
       <div className="relative z-10 container mx-auto px-4 py-16 md:py-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[80vh]">
           {/* Left Content */}

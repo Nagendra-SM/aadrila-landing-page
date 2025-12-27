@@ -38,22 +38,50 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(false)
   }
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
+    e.preventDefault()
+    setActiveItem(item.label)
+    setIsMenuOpen(false)
+
+    // Navigate to home page first if not already there
+    if (location.pathname !== '/') {
+      // Use navigate for SPA navigation
+      window.location.assign(`/${item.href}`)
+    } else {
+      // Smooth scroll to section on home page
+      const targetId = item.href.replace('#', '')
+      const element = document.getElementById(targetId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+  }
+
   const handleGetDemoClick = () => {
     console.info('Get a demo CTA triggered')
   }
 
   useEffect(() => {
-    if (location.pathname === '/about') {
-      setActiveItem('About Us')
-      return
-    }
+    const updateActiveItem = () => {
+      if (location.pathname === '/about') {
+        if (activeItem !== 'About Us') {
+          setActiveItem('About Us')
+        }
+        return
+      }
 
-    if (location.pathname === '/') {
-      const currentItem = NAV_ITEMS.find((item) => item.label === activeItem)
-      if (!currentItem || currentItem.type === 'route') {
-        setActiveItem('Home')
+      if (location.pathname === '/') {
+        const currentItem = NAV_ITEMS.find((item) => item.label === activeItem)
+        if (!currentItem || currentItem.type === 'route') {
+          if (activeItem !== 'Home') {
+            setActiveItem('Home')
+          }
+        }
       }
     }
+
+    const timeoutId = setTimeout(updateActiveItem, 0)
+    return () => clearTimeout(timeoutId)
   }, [location.pathname, activeItem])
 
   return (
@@ -103,7 +131,7 @@ const Navbar: React.FC = () => {
                   ) : (
                     <a
                       href={item.href}
-                      onClick={() => handleNavClick(item)}
+                      onClick={(e) => handleAnchorClick(e, item)}
                       className={linkClasses}
                       aria-current={isActive ? 'page' : undefined}
                     >
@@ -157,7 +185,7 @@ const Navbar: React.FC = () => {
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => handleNavClick(item)}
+                onClick={(e) => handleAnchorClick(e, item)}
                 className={mobileClasses}
                 aria-current={isActive ? 'page' : undefined}
               >
