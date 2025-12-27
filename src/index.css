@@ -12,6 +12,7 @@
   --color-button-hover: #1E1C26;
   --color-button-hero: #3E6EB4;
   --color-button-hero-hover: #2E5A9C;
+  --color-foreground:#696969;
 
   --font-raleway: 'Raleway', system-ui, sans-serif;
   --font-manrope: 'Manrope', system-ui, sans-serif;
@@ -35,6 +36,9 @@ body {
 
 .text-hero-title {
   color: var(--color-hero-title);
+}
+.bg-hero-title {
+  background-color: var(--color-hero-title);
 }
 
 .text-title {
@@ -69,24 +73,14 @@ body {
   background-color: var(--color-button-hover);
 }
 
-/* ✅ Responsive utilities */
-@media (max-width: 768px) {
-  .mobile-only {
-    display: block;
-  }
-  .desktop-only {
-    display: none;
-  }
+.text-hero-subtitle {
+  color: var(--color-button);
 }
 
-@media (min-width: 769px) {
-  .mobile-only {
-    display: none;
-  }
-  .desktop-only {
-    display: block;
-  }
+.text-hero-description {
+  color: var(--color-button-hover);
 }
+
 
 /* ✅ Accessibility helpers */
 .sr-only {
@@ -103,35 +97,12 @@ body {
 
 /* ✅ Splash screen styles */
 :root {
-  --background: 210 20% 98%;
-  --foreground: 215 25% 17%;
-
-  --card: 0 0% 100%;
+   --card: 0 0% 100%;
   --card-foreground: 215 25% 17%;
-
-  --popover: 0 0% 100%;
-  --popover-foreground: 215 25% 17%;
 
   --primary: 215 55% 25%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 215 25% 17%;
-
-  --muted: 210 30% 95%;
-  --muted-foreground: 215 15% 45%;
-
-  --accent: 24 95% 53%;
-  --accent-foreground: 0 0% 100%;
-
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-
-  --border: 214 20% 90%;
-  --input: 214 20% 90%;
-  --ring: 215 55% 25%;
-
-  --radius: 0.5rem;
 
   /* Splash screen specific colors */
   --navy: 215 55% 20%;
@@ -153,38 +124,11 @@ body {
   --shadow-splash: 0 8px 32px hsl(var(--navy) / 0.2);
 }
 
-.dark {
-  --background: 215 25% 10%;
-  --foreground: 210 20% 98%;
-  --card: 215 25% 12%;
-  --card-foreground: 210 20% 98%;
-  --popover: 215 25% 12%;
-  --popover-foreground: 210 20% 98%;
-  --primary: 24 95% 53%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 215 30% 18%;
-  --secondary-foreground: 210 20% 98%;
-  --muted: 215 30% 18%;
-  --muted-foreground: 215 15% 65%;
-  --accent: 24 95% 53%;
-  --accent-foreground: 0 0% 100%;
-  --border: 215 30% 20%;
-  --input: 215 30% 20%;
-  --ring: 24 95% 53%;
-}
-
-* {
-  border-color: hsl(var(--border));
-}
 
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: 'Inter', 'Manrope', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Manrope', 'Inter', sans-serif;
 }
 
 .splash-container {
@@ -289,20 +233,23 @@ h1, h2, h3, h4, h5, h6 {
   background-image: linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(var(--navy-light)) 100%);
 }
 
-.btn-primary {
-  background-color: hsl(var(--accent));
-  color: hsl(var(--accent-foreground));
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  transition: all 1s ease-out;
-  box-shadow: var(--shadow-splash);
+.text-gradient-custom {
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(90deg, #CD6028 11%, #3E6EB4 100%);
 }
 
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 32px -4px hsl(24 95% 53% / 0.45);
+.text-foreground{
+  color: var(--color-foreground);
 }
+
+.bg-gradient-badge {
+  color: #FFFFFF;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(90deg, #CD6028 11%, #3E6EB4 100%);
+}
+
+
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
@@ -394,5 +341,44 @@ h1, h2, h3, h4, h5, h6 {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@layer components {
+  .industry-card {
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border) / 0.5);
+    border-radius: 1.25rem;
+    box-shadow: 0px 0px 20px 0px #0000001F;
+    transition: all 0.3s ease;
+  }
+
+  .industry-card:hover {
+    border-color: hsl(var(--primary) / 0.2);
+    box-shadow: 0 10px 20px hsl(0 0% 0% / 0.12);
+    transform: translateY(-4px);
+  }
+
+  .industry-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tagline {
+    color: hsl(var(--primary));
+    font-weight: 500;
+    font-size: 1.125rem;
+    font-style: italic;
+  }
+
+  .section-heading {
+    color: hsl(var(--foreground));
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }

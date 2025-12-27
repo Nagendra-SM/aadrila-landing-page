@@ -51,7 +51,7 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
               : 'scale-100 rotate-0 opacity-100'
           } ${phase === 'merge' ? 'w-8 h-8' : 'w-16 h-16 md:w-20 md:h-20'}`}
         >
-          <img src="images/logo.png" alt="AADRILA Logo" className="w-full h-full object-contain" />
+          <img src="/logo.png" alt="AADRILA Logo" className="w-full h-full object-contain" />
         </div>
 
         {/* AADRIIA Text */}

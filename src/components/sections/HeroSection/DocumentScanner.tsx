@@ -18,9 +18,9 @@ const documents: Document[] = [
 
 // Position definitions: center, left, right
 const POSITIONS = {
-  center: { x: 0, y: 0, rotate: 0, scale: 1.05, zIndex: 10, blur: 0, opacity: 1 },
-  left: { x: -200, y: 30, rotate: -12, scale: 0.75, zIndex: 1, blur: 2, opacity: 0.6 },
-  right: { x: 200, y: 30, rotate: 12, scale: 0.75, zIndex: 1, blur: 2, opacity: 0.6 },
+  center: { x: 0, y: 0, rotate: 0, scale: 1.5, zIndex: 10, blur: 0, opacity: 1 },
+  left: { x: -250, y: 30, rotate: 0, scale: 0.9, zIndex: 1, blur: 2, opacity: 0.6 },
+  right: { x: 250, y: 30, rotate: 0, scale: 0.9, zIndex: 1, blur: 2, opacity: 0.6 },
 };
 
 const DocumentScanner = () => {

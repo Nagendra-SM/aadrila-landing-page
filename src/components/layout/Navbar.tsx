@@ -19,37 +19,37 @@ const ACTIVE_ITEM = 'Home'
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  // const [isScrolled, setIsScrolled] = useState(false)
   const [activeItem, setActiveItem] = useState(ACTIVE_ITEM)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 12)
-    }
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setIsScrolled(window.scrollY > 12)
+  //   }
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false)
-      }
-    }
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+  //       setIsMenuOpen(false)
+  //     }
+  //   }
 
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsMenuOpen(false)
-      }
-    }
+  //   const handleEscape = (event: KeyboardEvent) => {
+  //     if (event.key === 'Escape') {
+  //       setIsMenuOpen(false)
+  //     }
+  //   }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    document.addEventListener('mousedown', handleClickOutside)
-    document.addEventListener('keydown', handleEscape)
+  //   window.addEventListener('scroll', handleScroll, { passive: true })
+  //   document.addEventListener('mousedown', handleClickOutside)
+  //   document.addEventListener('keydown', handleEscape)
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('keydown', handleEscape)
-    }
-  }, [])
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll)
+  //     document.removeEventListener('mousedown', handleClickOutside)
+  //     document.removeEventListener('keydown', handleEscape)
+  //   }
+  // }, [])
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset'
@@ -64,7 +64,6 @@ const Navbar: React.FC = () => {
   }
 
   const handleGetDemoClick = () => {
-    // TODO: wire up analytics or navigation when backend integration is ready
     console.info('Get a demo CTA triggered')
   }
 
@@ -82,7 +81,7 @@ const Navbar: React.FC = () => {
           aria-label="Aadrila Technologies home"
         >
           <img
-            src="/images/logo.png"
+            src="/logo.png"
             alt="Aadrila Technologies logo"
             className="h-[48px] w-auto object-contain"
             draggable={false}
@@ -121,37 +120,6 @@ const Navbar: React.FC = () => {
           <ThemedButton onClick={handleGetDemoClick}>
             Get a Demo
           </ThemedButton>
-        </div>
-
-        <div className="flex h-full items-center lg:hidden">
-          <button
-            type="button"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/8 bg-white/60 text-[#2F2F2F] shadow-[0_8px_16px_rgba(32,41,58,0.06)] transition-colors duration-200 backdrop-blur-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#96B5F1]"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            <svg
-              className={`h-5 w-5 transition-transform duration-200 ${isMenuOpen ? 'rotate-90' : ''}`}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              {isMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <>
-                  <path d="M4 7h16" />
-                  <path d="M4 12h16" />
-                  <path d="M4 17h16" />
-                </>
-              )}
-            </svg>
-          </button>
         </div>
       </div>
 

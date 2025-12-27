@@ -30,11 +30,11 @@ const DocumentCard = ({ type, isScanning, delay = 0 }: DocumentCardProps) => {
       }}
     >
       <motion.div
-        className="w-72 h-96 rounded-2xl shadow-2xl relative overflow-hidden"
+        className="w-56 h-72 rounded-2xl relative overflow-hidden"
         style={{
-          boxShadow: isScanning 
-            ? "0 25px 50px -12px hsl(var(--scan-line) / 0.3), 0 12px 24px -8px hsl(var(--document-shadow) / 0.15)"
-            : "0 25px 50px -12px hsl(var(--document-shadow) / 0.25), 0 12px 24px -8px hsl(var(--document-shadow) / 0.1)"
+          filter: isScanning 
+            ? "drop-shadow(0 25px 25px hsl(var(--scan-line) / 0.3))"
+            : "drop-shadow(0 20px 20px hsl(var(--document-shadow) / 0.2))"
         }}
         animate={isScanning ? { scale: [1, 1.02, 1] } : { y: [0, -6, 0] }}
         transition={{ 
@@ -47,7 +47,7 @@ const DocumentCard = ({ type, isScanning, delay = 0 }: DocumentCardProps) => {
         <img 
           src={documentImages[type]} 
           alt={`${type} document`}
-          className="w-full h-full object-contain mix-blend-multiply"
+          className="w-full h-full object-contain"
         />
         
         {/* Scanning line overlay */}
@@ -67,31 +67,6 @@ const DocumentCard = ({ type, isScanning, delay = 0 }: DocumentCardProps) => {
           />
         )}
         
-        {/* Scanning corner indicators */}
-        {isScanning && (
-          <>
-            <motion.div
-              className="absolute top-2 left-2 w-5 h-5 border-l-2 border-t-2 border-scan rounded-tl"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1, repeat: Infinity }}
-            />
-            <motion.div
-              className="absolute top-2 right-2 w-5 h-5 border-r-2 border-t-2 border-scan rounded-tr"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1, repeat: Infinity, delay: 0.25 }}
-            />
-            <motion.div
-              className="absolute bottom-2 left-2 w-5 h-5 border-l-2 border-b-2 border-scan rounded-bl"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
-            />
-            <motion.div
-              className="absolute bottom-2 right-2 w-5 h-5 border-r-2 border-b-2 border-scan rounded-br"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1, repeat: Infinity, delay: 0.75 }}
-            />
-          </>
-        )}
       </motion.div>
       
       {/* Card shadow */}
