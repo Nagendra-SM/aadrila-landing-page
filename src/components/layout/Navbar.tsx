@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { ThemedButton } from '../common/ThemedButton'
 
 interface NavItem {
   label: string
   href: string
+  type?: 'anchor' | 'route'
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Industries', href: '#industries' },
-  { label: 'Products', href: '#products' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Contact Us', href: '#contact' },
-  { label: 'About Us', href: '#about' }
+  { label: 'Home', href: '/', type: 'route' },
+  { label: 'Industries', href: '#industries', type: 'anchor' },
+  { label: 'Products', href: '#products', type: 'anchor' },
+  { label: 'Blog', href: '#blog', type: 'anchor' },
+  { label: 'Contact Us', href: '#contact', type: 'anchor' },
+  { label: 'About Us', href: '/about', type: 'route' }
 ]
 
 const ACTIVE_ITEM = 'Home'
@@ -22,34 +24,7 @@ const Navbar: React.FC = () => {
   // const [isScrolled, setIsScrolled] = useState(false)
   const [activeItem, setActiveItem] = useState(ACTIVE_ITEM)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setIsScrolled(window.scrollY > 12)
-  //   }
-
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
-  //       setIsMenuOpen(false)
-  //     }
-  //   }
-
-  //   const handleEscape = (event: KeyboardEvent) => {
-  //     if (event.key === 'Escape') {
-  //       setIsMenuOpen(false)
-  //     }
-  //   }
-
-  //   window.addEventListener('scroll', handleScroll, { passive: true })
-  //   document.addEventListener('mousedown', handleClickOutside)
-  //   document.addEventListener('keydown', handleEscape)
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll)
-  //     document.removeEventListener('mousedown', handleClickOutside)
-  //     document.removeEventListener('keydown', handleEscape)
-  //   }
-  // }, [])
+  const location = useLocation()
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset'
@@ -66,6 +41,20 @@ const Navbar: React.FC = () => {
   const handleGetDemoClick = () => {
     console.info('Get a demo CTA triggered')
   }
+
+  useEffect(() => {
+    if (location.pathname === '/about') {
+      setActiveItem('About Us')
+      return
+    }
+
+    if (location.pathname === '/') {
+      const currentItem = NAV_ITEMS.find((item) => item.label === activeItem)
+      if (!currentItem || currentItem.type === 'route') {
+        setActiveItem('Home')
+      }
+    }
+  }, [location.pathname, activeItem])
 
   return (
     <nav
@@ -96,20 +85,31 @@ const Navbar: React.FC = () => {
           <ul className="flex items-center gap-[32px] text-base leading-4 font-normal tracking-[0.02em] font-manrope text-nav">
             {NAV_ITEMS.map((item) => {
               const isActive = activeItem === item.label
+              const linkClasses = `inline-flex h-full items-center pt-[2px] transition-colors duration-150 ${
+                isActive ? 'text-hero-title' : 'hover:text-hero-title'
+              } ${isActive ? 'font-medium' : 'font-normal'}`
+
               return (
                 <li key={item.label} className="relative border-none">
-                  <a
-                    href={item.href}
-                    onClick={() => handleNavClick(item)}
-                    className={`inline-flex h-full items-center pt-[2px] transition-colors duration-150 ${
-                      isActive ? 'text-hero-title' : 'hover:text-hero-title'
-                    } ${
-                      isActive ? 'font-medium' : 'font-normal'
-                    }`}
-                    aria-current={isActive ? 'page' : undefined}
-                  >
-                    <span>{item.label}</span>
-                  </a>
+                  {item.type === 'route' ? (
+                    <Link
+                      to={item.href}
+                      onClick={() => handleNavClick(item)}
+                      className={linkClasses}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      <span>{item.label}</span>
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      onClick={() => handleNavClick(item)}
+                      className={linkClasses}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      <span>{item.label}</span>
+                    </a>
+                  )}
                 </li>
               )
             })}
@@ -133,16 +133,32 @@ const Navbar: React.FC = () => {
         <div className="space-y-1 px-6 py-4 text-[16px] font-medium font-manrope text-body">
           {NAV_ITEMS.map((item) => {
             const isActive = activeItem === item.label
+            const mobileClasses = `flex items-center rounded-[12px] px-3 py-2 transition-colors duration-150 ${
+              isActive
+                ? 'bg-hero-title/10 text-hero-title'
+                : 'hover:bg-hero-title/5 hover:text-hero-title'
+            }`
+
+            if (item.type === 'route') {
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  onClick={() => handleNavClick(item)}
+                  className={mobileClasses}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {item.label}
+                </Link>
+              )
+            }
+
             return (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => handleNavClick(item)}
-                className={`flex items-center rounded-[12px] px-3 py-2 transition-colors duration-150 ${
-                  isActive
-                    ? 'bg-hero-title/10 text-hero-title'
-                    : 'hover:bg-hero-title/5 hover:text-hero-title'
-                }`}
+                className={mobileClasses}
                 aria-current={isActive ? 'page' : undefined}
               >
                 {item.label}

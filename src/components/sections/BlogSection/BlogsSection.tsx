@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import SectionHeading from "../../common/SectionHeading";
 import BlogCard from "./BlogCard";
-import DotGrid from "../../common/DotGrid";
 
 const blogs = [
   {
@@ -48,38 +47,34 @@ const BlogsSection = () => {
 
   return (
     <section className="relative py-20 md:py-28 overflow-hidden">
-      {/* Dot grid decorations */}
-      <div className="absolute left-8 top-8">
-        <DotGrid rows={6} cols={8} />
-      </div>
-      <div className="absolute right-8 top-1/3">
-        <DotGrid rows={6} cols={4} />
-      </div>
 
       <div className="container relative z-10 px-6 md:px-8 lg:px-12">
         <SectionHeading
-          tagline="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard."
+          headingFirst={true}
           heading="Blogs"
+          tagline="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard."
           centered
           className="mb-16 max-w-4xl mx-auto"
         />
 
         {/* Blog Cards Carousel */}
         <div className="relative overflow-hidden">
-          <motion.div
-            animate={{ x: `-${currentIndex * (100 / cardsToShow)}%` }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="flex gap-6"
-          >
-            {blogs.map((blog, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
-              >
-                <BlogCard {...blog} delay={index * 0.1} />
-              </div>
-            ))}
-          </motion.div>
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              animate={{ x: `-${currentIndex * (100 / cardsToShow)}%` }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="flex gap-16"
+            >
+              {blogs.map((blog, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                >
+                  <BlogCard {...blog} delay={index * 0.1} />
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
 
         {/* Navigation Arrows */}

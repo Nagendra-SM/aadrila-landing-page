@@ -5,7 +5,6 @@ import { ThemedButton } from '../../common/ThemedButton'
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen overflow-hidden" style={{ backgroundImage: "url('/images/hero-bg.jpg')",objectFit: "cover" }}>
-      
       <div className="relative z-10 container mx-auto px-4 py-16 md:py-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[80vh]">
           {/* Left Content */}
@@ -24,7 +23,6 @@ const HeroSection = () => {
               >
                 AI-Powered
               </motion.p>
-              
               <motion.p
                 className="text-hero-subtitle font-bold font-display text-xl md:text-5xl leading-16 font-raleway tracking-normal"
                 initial={{ opacity: 0, y: 20 }}
@@ -36,7 +34,6 @@ const HeroSection = () => {
                 <span>& Fraud Detection</span>
               </motion.p>
             </div>
-            
             <motion.p
               className="text-xl text-hero-description max-w-lg leading-7 font-manrope tracking-normal font-medium"
               initial={{ opacity: 0, y: 20 }}
@@ -46,7 +43,6 @@ const HeroSection = () => {
               Enhance security, accuracy, and efficiency with our cutting-edge AI solutions 
               for seamless document processing and fraud prevention.
             </motion.p>
-            
             <motion.div
               className="flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 20 }}
@@ -61,7 +57,6 @@ const HeroSection = () => {
               </ThemedButton>
             </motion.div>
           </motion.div>
-          
           {/* Right Content - Document Scanner */}
           <motion.div
             className="relative"

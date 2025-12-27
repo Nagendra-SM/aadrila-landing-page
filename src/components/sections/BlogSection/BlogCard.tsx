@@ -17,11 +17,11 @@ const BlogCard = ({ title, date, excerpt, delay = 0 }: BlogCardProps) => {
       whileHover={{ y: -8 }}
       className="bg-card rounded-xl p-6 shadow-sm border border-border/50 cursor-pointer group flex flex-col h-full"
     >
-      <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors leading-tight">
+      <h3 className="text-lg font-bold text-hero-subtitle mb-2 group-hover:text-primary transition-colors leading-tight font-raleway">
         {title}
       </h3>
-      <p className="text-primary text-sm mb-4">{date}</p>
-      <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
+      <p className="text-[#719AD0] font-medium text-sm mb-4">{date}</p>
+      <p className="text-foreground font-normal text-sm leading-relaxed ">
         {excerpt}
       </p>
       
