@@ -4,13 +4,13 @@ A responsive and modern landing page built with React, TypeScript, and Vite. Thi
 
 ## Features
 
-- 🚀 Built with React 18 and TypeScript
-- ⚡ Lightning fast with Vite
-- 🎨 Styled with Tailwind CSS
-- 📱 Fully responsive design
-- 🌓 Dark/Light mode support
-- 🎭 Smooth animations and transitions
-- 🛠️ Optimized build process
+- Built with React 18 and TypeScript
+- Lightning fast with Vite
+- Styled with Tailwind CSS
+- Fully responsive design
+- Dark/Light mode support
+- Smooth animations and transitions
+- Optimized build process
 
 ## Tech Stack
 
