@@ -8,7 +8,7 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
   const [phase, setPhase] = useState<'logo' | 'slide' | 'text' | 'merge' | 'done'>('logo');
 
   useEffect(() => {
-    const timers: number[] = [];
+    const timers: (number | NodeJS.Timeout)[] = [];
 
     // Phase 1: Logo appears (0 - 800ms)
     timers.push(setTimeout(() => setPhase('slide'), 800));
