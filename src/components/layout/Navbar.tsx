@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ThemedButton } from '../common/ThemedButton'
-import OptimizedImage from '../common/OptimizedImage'
 
 interface NavItem {
   label: string
@@ -92,18 +91,17 @@ const Navbar: React.FC = () => {
       className={`fixed top-[11px] left-[3px] right-[3px] z-50 h-[85px] transition-all duration-300 ease-out bg-[FFFFFF0];
  backdrop-blur-[20px] rounded-[18px]`}
     >
-      <div className="mx-auto flex h-full w-full max-w-[1439.78px] items-center justify-between px-8">
+      <div className="mx-auto flex h-full w-full max-w-[1439.78px] items-center justify-between px-[32px]">
         <a
           href="/"
-          className="flex items-center text-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#96B5F1]"
+          className="flex items-center gap-2 text-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#96B5F1]"
           aria-label="Aadrila Technologies home"
         >
-          <OptimizedImage
+          <img
             src="/logo.png"
             alt="Aadrila Technologies logo"
-            className="h-[48px] object-contain"
-            width={75}
-            height={48}
+            className="h-[48px] w-auto object-contain"
+            draggable={false}
           />
           <span className="flex flex-col leading-tight">
             <span className="text-[28px] font-medium tracking-[0.15em] font-raleway text-black ">AADRILA</span>

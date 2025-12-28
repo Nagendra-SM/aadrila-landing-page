@@ -4,7 +4,6 @@ import { useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import circleImage from "../../../assets/circle.png";
 import dotGroupImage from "../../../assets/dot-group.png";
-import OptimizedImage from "../../common/OptimizedImage";
 
 interface TeamMember {
   id: number;
@@ -65,22 +64,20 @@ const MeetOurTeam = () => {
       className="relative min-h-screen bg-white py-16 md:py-24 overflow-hidden"
     >
       <div className="absolute top-10 left-0 w-80 h-80 md:w-[500px] md:h-[500px] opacity-20 pointer-events-none">
-        <OptimizedImage
+        <img
           src={circleImage}
           alt=""
           className="w-full h-full object-contain"
-          width={500}
-          height={500}
+          loading="lazy"
         />
       </div>
 
       <div className="absolute top-32 right-8 md:right-16 w-32 h-40 md:w-40 md:h-48 opacity-40 pointer-events-none">
-        <OptimizedImage
+        <img
           src={dotGroupImage}
           alt=""
           className="w-full h-full object-contain"
-          width={160}
-          height={192}
+          loading="lazy"
         />
       </div>
 
@@ -152,12 +149,11 @@ const MeetOurTeam = () => {
                     isActive ? 'border-title shadow-2xl' : 'border-hero-title'
                   } ${isActive ? 'w-32 h-32 md:w-40 md:h-40' : 'w-20 h-20 md:w-28 md:h-28'}`}
                 >
-                  <OptimizedImage
+                  <img
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover"
-                    width={160}
-                    height={160}
+                    loading="lazy"
                   />
                 </motion.div>
               </motion.div>

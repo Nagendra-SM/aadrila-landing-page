@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import circleImage from "../../../assets/circle.png";
-import OptimizedImage from "../../common/OptimizedImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,8 +14,6 @@ interface ProductCardProps {
   benefits: string[];
   image: string;
   imageAlt: string;
-  imageWidth?: number;
-  imageHeight?: number;
   reversed?: boolean;
 }
 
@@ -27,8 +24,6 @@ const ProductCard = ({
   benefits,
   image,
   imageAlt,
-  imageWidth = 600,
-  imageHeight = 600,
   reversed = false,
 }: ProductCardProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -133,29 +128,20 @@ const ProductCard = ({
   );
 
   const ImageBlock = (
-    <div ref={imageRef} className="relative opacity-0  w-[800px]">
+    <div ref={imageRef} className="relative opacity-0  flex justify-center items-center">
       {/* Background circle */}
       <div className={`absolute ${reversed ? "-left-20" : "-right-20"} top-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none opacity-30`}>
-        <OptimizedImage 
-          src={circleImage} 
-          alt="" 
-          className="w-full h-full object-contain" 
-          aria-hidden="true"
-          width={700}
-          height={700}
-        />
+        <img src={circleImage} alt="" className="w-full h-full object-contain" aria-hidden="true" />
       </div>
       <motion.div
         whileHover={{ scale: 1.02, y: -5 }}
         transition={{ duration: 0.3 }}
-        className="relative right-30 z-10 rounded-2xl overflow-hidden justify-center items-center flex"
+        className="relative z-10 rounded-2xl overflow-hidden"
       >
-        <OptimizedImage
+        <img
           src={image}
           alt={imageAlt}
           className="w-full h-auto max-w-xl mx-auto"
-          width={imageWidth}
-          height={imageHeight}
         />
       </motion.div>
     </div>

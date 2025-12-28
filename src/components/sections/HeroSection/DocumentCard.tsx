@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import LicenseImg from "../../../assets/License.png";
 import InvoiceImg from "../../../assets/Invoice.png";
 import DocImg from "../../../assets/Doc.png";
-import OptimizedImage from "../../common/OptimizedImage";
 
 type DocumentType = "license" | "invoice" | "doc";
 
@@ -50,12 +49,10 @@ const DocumentCard = ({ type, isScanning, delay = 0 }: DocumentCardProps) => {
           delay: delay * 0.5
         }}
       >
-        <OptimizedImage 
-          src={documentImages[type]}
+        <img 
+          src={documentImages[type]} 
           alt={`${type} document`}
           className="w-full h-full object-contain"
-          width={224}
-          height={288}
         />
         
         {/* Scanning line overlay - only show on desktop for better mobile performance */}
