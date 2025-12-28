@@ -11,7 +11,9 @@ const MainLayout = () => {
         <Outlet />
       </main>
       {/* <ContactSection/> */}
-      <Footer />
+      <div id="contact">
+        <Footer />
+      </div>
     </>
   );
 };

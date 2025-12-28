@@ -40,9 +40,15 @@ body {
 .bg-hero-title {
   background-color: var(--color-hero-title);
 }
+.border-hero-title {
+  border-color: var(--color-hero-title);
+}
 
 .text-title {
   color: var(--color-title);
+}
+.border-title {
+  border-color: var(--color-title);
 }
 
 .text-subtitle {

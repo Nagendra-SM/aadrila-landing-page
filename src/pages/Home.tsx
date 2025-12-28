@@ -3,7 +3,7 @@ import HeroSection from "../components/sections/HeroSection/HeroSection";
 import IndustrySection from "../components/sections/IndustrySection/IndustriesSection";
 import ProductsSection from "../components/sections/ProductSection/ProductsSection";
 import BlogsSection from "../components/sections/BlogSection/BlogsSection";
-import ContactSection from "../components/layout/ContactSection";
+// import ContactSection from "../components/layout/Footer";
 
 const Home = () => {
   return (
@@ -28,9 +28,9 @@ const Home = () => {
         <div id="blog">
           <BlogsSection />
         </div>
-        <div id="contact">
+        {/* <div id="contact">
           <ContactSection />
-        </div>
+        </div> */}
       </main>
     </>
   );

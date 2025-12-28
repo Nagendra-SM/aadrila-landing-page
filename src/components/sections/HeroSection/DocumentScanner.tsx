@@ -16,11 +16,21 @@ const documents: Document[] = [
   { id: 3, type: "invoice" },
 ];
 
-// Position definitions: center, left, right
 const POSITIONS = {
   center: { x: 0, y: 0, rotate: 0, scale: 1.5, zIndex: 10, blur: 0, opacity: 1 },
   left: { x: -250, y: 30, rotate: 0, scale: 0.9, zIndex: 1, blur: 2, opacity: 0.6 },
   right: { x: 250, y: 30, rotate: 0, scale: 0.9, zIndex: 1, blur: 2, opacity: 0.6 },
+};
+
+const getResponsivePositions = (width: number) => {
+  if (width < 1024) { // lg breakpoint
+    return {
+      center: { ...POSITIONS.center, scale: 1.3 },
+      left: { ...POSITIONS.left, x: -120, scale: 0.8 },
+      right: { ...POSITIONS.right, x: 120, scale: 0.8 },
+    };
+  }
+  return POSITIONS;
 };
 
 const DocumentScanner = () => {
@@ -48,41 +58,67 @@ const DocumentScanner = () => {
   const getPosition = (docIndex: number) => {
     if (!isInitialized) {
       // Initial positions
-      if (docIndex === 0) return POSITIONS.center;
-      if (docIndex === 1) return POSITIONS.left;
-      return POSITIONS.right;
+      if (docIndex === 0) return positions.center;
+      if (docIndex === 1) return positions.left;
+      return positions.right;
     }
 
     // Calculate which position this document should be in
     // Position order: 0=center, 1=left, 2=right
     const positionIndex = (docIndex - rotation % 3 + 3) % 3;
     
-    if (positionIndex === 0) return POSITIONS.center;
-    if (positionIndex === 1) return POSITIONS.left;
-    return POSITIONS.right;
+    if (positionIndex === 0) return positions.center;
+    if (positionIndex === 1) return positions.left;
+    return positions.right;
   };
 
+  const [dimensions, setDimensions] = useState({ width: 1024, height: 768 });
+
+  useEffect(() => {
+    // Set initial dimensions
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    
+    // Set initial values
+    updateDimensions();
+    
+    // Add event listener
+    window.addEventListener('resize', updateDimensions);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
+
+  const isMobile = dimensions.width < 1024;
+  const positions = isMobile ? getResponsivePositions(dimensions.width) : POSITIONS;
+
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center">
-      {/* Decorative glow */}
-      <motion.div
-        className="absolute w-80 h-80 rounded-full opacity-30"
-        style={{
-          background: "radial-gradient(circle, hsl(var(--wave-color)) 0%, transparent 70%)"
-        }}
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+    <div className="relative w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px] flex items-center justify-center">
+      {/* Decorative glow - only on desktop */}
+      {!isMobile && (
+        <motion.div
+          className="absolute w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80 rounded-full opacity-30"
+          style={{
+            background: "radial-gradient(circle, hsl(var(--wave-color)) 0%, transparent 70%)"
+          }}
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.15, 0.25, 0.15],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      )}
 
       {/* Document container */}
-      <div className="relative w-[600px] h-[350px] flex items-center justify-center">
+      <div className="relative w-full max-w-[600px] h-[250px] sm:h-[300px] md:h-[350px] flex items-center justify-center px-4">
         <AnimatePresence>
           {documents.map((doc, index) => {
             const position = getPosition(index);
