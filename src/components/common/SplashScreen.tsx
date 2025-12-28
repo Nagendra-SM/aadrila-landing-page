@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import OptimizedImage from './OptimizedImage';
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -8,7 +9,7 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
   const [phase, setPhase] = useState<'logo' | 'slide' | 'text' | 'merge' | 'done'>('logo');
 
   useEffect(() => {
-    const timers: number[] = [];
+    const timers: (NodeJS.Timeout | number)[] = [];
 
     // Phase 1: Logo appears (0 - 800ms)
     timers.push(setTimeout(() => setPhase('slide'), 800));
@@ -39,7 +40,7 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
       <div
         className={`relative flex items-center gap-3 transition-all duration-700 ease-out ${
           phase === 'merge'
-            ? 'scale-75 -translate-y-[45vh] -translate-x-[35vw]'
+            ? 'scale-75 -translate-y-[calc(50vh-24px)] -translate-x-[calc(50vw-200px)]'
             : 'scale-100 translate-y-0 translate-x-0'
         }`}
       >
@@ -49,9 +50,15 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
             phase === 'logo'
               ? 'scale-0 rotate-180 opacity-0'
               : 'scale-100 rotate-0 opacity-100'
-          } ${phase === 'merge' ? 'w-8 h-8' : 'w-16 h-16 md:w-20 md:h-20'}`}
+          } ${phase === 'merge' ? 'w-[75px] h-[48px]' : 'w-16 h-16 md:w-20 md:h-20'}`}
         >
-          <img src="/logo.png" alt="AADRILA Logo" className="w-full h-full object-contain" />
+          <OptimizedImage 
+            src="/logo.png" 
+            alt="AADRILA Logo" 
+            className="w-full h-full object-contain"
+            width={phase === 'merge' ? 75 : 80}
+            height={phase === 'merge' ? 48 : 80}
+          />
         </div>
 
         {/* AADRIIA Text */}

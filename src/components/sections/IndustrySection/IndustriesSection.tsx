@@ -6,6 +6,7 @@ import { InsuranceIcon, LendingIcon, HealthcareIcon } from "./IndustryIcons";
 import circleImage from "../../../assets/circle.png";
 import dotGroup from "../../../assets/dot-group.png";
 import dotGroup3 from "../../../assets/dot-group3.png";
+import OptimizedImage from "../../common/OptimizedImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -80,31 +81,37 @@ const IndustriesSection = () => {
     >
       {/* Background decorative circle */}
       <div className="absolute -left-32 md:-left-20 lg:-left-10 top-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[700px] md:h-[700px] lg:w-[800px] lg:h-[800px] pointer-events-none opacity-80">
-        <img
+        <OptimizedImage
           src={circleImage}
           alt=""
           className="w-full h-full object-contain"
           aria-hidden="true"
+          width={800}
+          height={800}
         />
       </div>
 
       {/* Dot pattern - top right */}
       <div className="absolute right-80 top-20 md:top-16 w-40 md:w-52 pointer-events-none opacity-60">
-        <img
+        <OptimizedImage
           src={dotGroup3}
           alt=""
           className="w-full h-auto"
           aria-hidden="true"
+          width={208}
+          height={160}
         />
       </div>
 
       {/* Dot pattern - bottom right */}
       <div className="absolute right-0 bottom-16 md:bottom-20 w-64 md:w-80 pointer-events-none opacity-50">
-        <img
+        <OptimizedImage
           src={dotGroup}
           alt=""
           className="w-full h-auto"
           aria-hidden="true"
+          width={320}
+          height={200}
         />
       </div>
 

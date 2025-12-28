@@ -3,10 +3,12 @@ import SplashScreen from "./components/common/SplashScreen";
 import { useState, useCallback } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import NotFound from "./pages/NotFound";
 import MainLayout from "./components/layout/MainLayout";
+import { lazy, Suspense } from 'react';
+
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -29,6 +31,7 @@ function App() {
                 contentVisible ? "opacity-100" : "opacity-0"
               }`}
             >
+              <Suspense fallback={<div>Loading...</div>}>
               <Routes>
                 <Route element={<MainLayout />}>
                   <Route index element={<Home />} />
@@ -36,6 +39,7 @@ function App() {
                   <Route path="*" element={<NotFound />} />
                 </Route>
               </Routes>
+              </Suspense>
             </div>
           </div>
         </ThemeProvider>

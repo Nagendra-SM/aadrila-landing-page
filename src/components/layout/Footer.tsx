@@ -78,7 +78,7 @@ const Footer = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 md:py-0 overflow-hidden flex justify-center items-center"
+      className="relative py-0 md:py-0 overflow-hidden flex justify-center items-center"
     >
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 px-6 md:px-8 lg:px-12">
@@ -125,7 +125,7 @@ const Footer = () => {
           </div>
 
           {/* Right Form */}
-          <div ref={formRef} className="opacity-0 relative top-20 right-20">
+          <div ref={formRef} className="opacity-0 lg:relative lg:top-20 lg:right-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

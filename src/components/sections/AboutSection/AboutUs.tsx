@@ -69,8 +69,8 @@ const AboutUs = () => {
   const isHeaderInView = useInView(headerRef, { once: true, amount: 0.5 });
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-50 to-white py-16 md:py-24 overflow-hidden">
-      <div className="absolute top-0 right-0 h-full w-2 bg-gradient-to-b from-violet-600 via-violet-500 to-violet-400 opacity-60" />
+    <section className="relative md:min-h-screen py-16 md:py-24 overflow-hidden">
+      <div className="absolute top-0 right-0 h-full w-2 opacity-60" />
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -90,8 +90,8 @@ const AboutUs = () => {
           </div>
         </motion.div>
 
-        <div className="space-y-16 md:space-y-24">
-          <div className="relative top-0 right-80 ">
+        <div className="hidden md:block md:space-y-24">
+          <div className="relative top-0 right-80">
             <VisionMissionCard
               title="Our Mission"
               description="To redefine document management with cutting-edge technology that ensures accuracy, efficiency, and trust."
@@ -99,9 +99,8 @@ const AboutUs = () => {
             />
           </div>
           <div className="relative top-0 left-80">
-
-          <VisionMissionCard
-            title="Our Vision"
+            <VisionMissionCard
+              title="Our Vision"
             description="To redefine document management with cutting-edge technology that ensures accuracy, efficiency, and trust."
           />
           </div>

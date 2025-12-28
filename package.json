@@ -8,9 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
-    "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+    "analyze": "source-map-explorer 'dist/assets/*.js'"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -20,6 +18,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-helmet-async": "^2.0.5",
+    "react-lazy-load-image-component": "^1.6.3",
     "react-router-dom": "^7.11.0",
     "tailwindcss": "^4.1.18"
   },
@@ -41,6 +40,7 @@
     "@types/node": "^24.10.4",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@types/react-lazy-load-image-component": "^1.6.5",
     "@types/testing-library__jest-dom": "^5.14.9",
     "@vitejs/plugin-react": "^5.1.1",
     "babel-jest": "^30.2.0",
@@ -61,6 +61,9 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
+    "vite-imagetools": "^9.0.2",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-image-optimizer": "^2.0.3",
     "web-vitals": "^5.1.0"
   }
 }
